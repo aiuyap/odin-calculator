@@ -14,6 +14,10 @@ function divideFunction () {
     getSecondNum();
     displayArea.textContent = firstNum / secondNum;
 }
+function modolusFunction() {
+    getSecondNum();
+    displayArea.textContent = firstNum % secondNum;
+}
 function getDisplayNumber () {
     return parseInt(displayArea.textContent);
 }
@@ -89,6 +93,12 @@ buttonZero.addEventListener("click", () => {
     displayArea.textContent += "0";
 });
 
+const buttonDot = document.querySelector("#dotBtn");
+buttonDot.addEventListener("click", () => {
+    const checkIfExists = displayArea.textContent.includes(".");
+    if (!checkIfExists) {displayArea.textContent += ".";}
+});
+
 const buttonClear = document.querySelector("#clearBtn");
 buttonClear.addEventListener("click", () => {
     firstNum = 0;
@@ -127,6 +137,14 @@ buttonDivide.addEventListener("click", () => {
     }
 });
 
+const buttonModolus = document.querySelector("#modolusBtn");
+buttonModolus.addEventListener("click", () => {
+    if (canPressOperator > 0) {
+        currentOperator = 5;
+        processAfterPressingOperator();
+    }
+});
+
 buttonEqual.addEventListener("click", () => {
     switch(currentOperator) {
         case 1:
@@ -140,6 +158,9 @@ buttonEqual.addEventListener("click", () => {
             break;
         case 4:
             divideFunction();
+            break;
+        case 5:
+            modolusFunction();
             break;
         default:
             break;
