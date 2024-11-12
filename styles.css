@@ -54,6 +54,14 @@ button {
 
 button:active {
     background-color: rgb(216, 118, 7);
-    box-shadow: 0 5px rgb(46, 45, 45);
+    box-shadow: 0 5px rgb(26, 25, 25);
     transform: translateY(4px);
   }
+
+.operator {
+    background-color: rgb(216, 118, 7);
+}
+
+.operator:active {
+    background-color: rgb(46, 45, 45);
+}

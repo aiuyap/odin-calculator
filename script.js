@@ -1,20 +1,44 @@
-function addFunction (a, b) {
-    return a + b;
+function addFunction () {
+    getSecondNum();
+    displayArea.textContent = firstNum + secondNum;
 }
-function subtractFunction (a, b) {
-    return a - b;
+function subtractFunction () {
+    getSecondNum();
+    displayArea.textContent = firstNum - secondNum;
 }
-function multiplyFunction (a, b) {
-    return a * b;
+function multiplyFunction () {
+    getSecondNum();
+    displayArea.textContent = firstNum * secondNum;
 }
-function divideFunction (a, b) {
-    return a / b;
+function divideFunction () {
+    getSecondNum();
+    displayArea.textContent = firstNum / secondNum;
+}
+function getDisplayNumber () {
+    return parseInt(displayArea.textContent);
+}
+function processAfterPressingOperator () {
+    firstNum = getDisplayNumber();
+    displayArea.textContent = null;
+    canPressOperator = 0;
+    buttonEqual.disabled = false;
+}
+function getSecondNum () {
+    secondNum = getDisplayNumber();
+    canPressOperator = 1;
+    buttonEqual.disabled = true;
 }
 
-let firstNum = 0;
-let secondNum = 0;
+
+let firstNum;
+let secondNum;
+let currentOperator;
+let canPressOperator = 1;
 
 const displayArea = document.querySelector("#display");
+displayArea.textContent = null;
+const buttonEqual = document.querySelector("#equalBtn");
+
 const buttonOne = document.querySelector("#oneBtn");
 buttonOne.addEventListener("click", () => {
     displayArea.textContent += "1";
@@ -69,5 +93,55 @@ const buttonClear = document.querySelector("#clearBtn");
 buttonClear.addEventListener("click", () => {
     firstNum = 0;
     secondNum = 0;
-    displayArea.textContent = "";
+    displayArea.textContent = null;
+    currentOperator = 0;
+    canPressOperator = 1;
+});
+
+const buttonAdd = document.querySelector("#addBtn");
+buttonAdd.addEventListener("click", () => {
+    if (canPressOperator > 0) {
+        currentOperator = 1;
+        processAfterPressingOperator();
+    }
+});
+const buttonSubtract = document.querySelector("#subtractBtn");
+buttonSubtract.addEventListener("click", () => {
+    if (canPressOperator > 0) {
+        currentOperator = 2;
+        processAfterPressingOperator();
+    }
+});
+const buttonMultiply = document.querySelector("#multiplyBtn");
+buttonMultiply.addEventListener("click", () => {
+    if (canPressOperator > 0) {
+        currentOperator = 3;
+        processAfterPressingOperator();
+    }
+});
+const buttonDivide = document.querySelector("#divideBtn");
+buttonDivide.addEventListener("click", () => {
+    if (canPressOperator > 0) {
+        currentOperator = 4;
+        processAfterPressingOperator();
+    }
+});
+
+buttonEqual.addEventListener("click", () => {
+    switch(currentOperator) {
+        case 1:
+            addFunction();
+            break;
+        case 2:
+            subtractFunction();
+            break;
+        case 3:
+            multiplyFunction();
+            break;
+        case 4:
+            divideFunction();
+            break;
+        default:
+            break;
+    }
 });
