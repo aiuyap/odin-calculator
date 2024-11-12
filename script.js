@@ -24,7 +24,7 @@ function modolusFunction() {
 
 }
 function getDisplayNumber () {
-    return parseInt(displayArea.textContent);
+    return +displayArea.textContent;
 }
 function processAfterPressingOperator () {
     firstNum = getDisplayNumber();
