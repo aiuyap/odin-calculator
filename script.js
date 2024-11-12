@@ -12,11 +12,16 @@ function multiplyFunction () {
 }
 function divideFunction () {
     getSecondNum();
-    displayArea.textContent = firstNum / secondNum;
+    if(secondNum === 0) {
+        displayArea.textContent = "Lmao";
+    } else {
+        displayArea.textContent = firstNum / secondNum;
+    }
 }
 function modolusFunction() {
     getSecondNum();
     displayArea.textContent = firstNum % secondNum;
+
 }
 function getDisplayNumber () {
     return parseInt(displayArea.textContent);
@@ -143,6 +148,11 @@ buttonModolus.addEventListener("click", () => {
         currentOperator = 5;
         processAfterPressingOperator();
     }
+});
+
+const buttonBackspace = document.querySelector("#backspace");
+buttonBackspace.addEventListener("click", () => {
+    displayArea.textContent = displayArea.textContent.split("").slice(0, -1).join("");
 });
 
 buttonEqual.addEventListener("click", () => {
